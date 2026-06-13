@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODE-NEXA | Ekskul Koding</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">CODE<span>NEXA</span></div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#materi">Materi</a></li>
+                <li><a href="#mentor">Mentor</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <!-- Di bagian navigasi header (index.html) -->
+                <li><a href="/form.html" class="btn-join">Join</a></li>
+                <li><button id="theme-toggle" class="theme-btn">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="reveal reveal-bottom">
+    <div class="about-container">
+        <div class="about-text">
+            <h1 class="main-title">
+    What is <span id="dynamic-typing" class="soft-neon-purple"></span>
+</h1>
+            <p class="about-description">
+                Sebuah ruang kreatif di SMA bagi para calon pengembang teknologi. Kami bukan sekadar belajar koding, tapi membangun solusi nyata melalui kolaborasi, logika, dan kreativitas tanpa batas.
+            </p>
+            <div class="about-features">
+                <div class="feat-item"><span>✔</span> Project-Based</div>
+                <div class="feat-item"><span>✔</span> Peer Learning</div>
+                <div class="feat-item"><span>✔</span> Future Ready</div>
+            </div>
+        </div>
+        <div class="about-visual">
+            <div class="glow-orb orb-purple"></div>
+            <div class="glow-orb orb-blue"></div>
+            
+        </div>
+    </div>
+</section>
+
+        <section id="materi" class="reveal reveal-left">
+            <h2 class="text-center neon-text-blue">Materi Pembelajaran</h2>
+            <div class="grid-container">
+                <div class="materi-card neon-border-purple">
+                    <div class="icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Belajar HTML5, CSS3, dan JavaScript untuk membuat website interaktif.</p>
+                </div>
+                <div class="materi-card neon-border-blue">
+                    <div class="icon">🐍</div>
+                    <h3>Python Basics</h3>
+                    <p>Mengenal logika pemrograman dan pengolahan data menggunakan Python.</p>
+                </div>
+                <div class="materi-card neon-border-purple">
+                    <div class="icon">📱</div>
+                    <h3>Mobile Apps</h3>
+                    <p>Eksplorasi pembuatan aplikasi android dan iOS sederhana.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mentor" class="reveal">
+            <h2 class="text-center neon-text-blue">Our Instructors</h2>
+            <div class="grid-container">
+                <div class="mentor-card neon-border-purple">
+                    <div class="mentor-img"></div>
+                    <h3>Kak Budi</h3>
+                    <p class="text-gradient">Senior Web Dev</p>
+                    <p class="desc">Expert di bidang UI/UX dan ReactJS dengan pengalaman 3 tahun.</p>
+                </div>
+                <div class="mentor-card neon-border-blue">
+                    <div class="mentor-img"></div>
+                    <h3>Kak Siti</h3>
+                    <p class="text-gradient">Data Scientist</p>
+                    <p class="desc">Mengajar Python dan pengolahan database secara menyenangkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="reveal">
+            <h2 class="text-center neon-text-blue">Our Activities</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="/anak lk.jpg" alt="Kegiatan 1"></div>
+                <div class="gallery-item"><img src="/klmpk.jpg" alt="Kegiatan 2"></div>
+                <div class="gallery-item"><img src="/images (1).jpg" alt="Kegiatan 3"></div>
+                <div class="gallery-item"><img src="/images.jpg" alt="Kegiatan 4"></div>
+            </div>
+        </section>
+
+        <!-- SECTION MATRIKS KURIKULUM INTERAKTIF -->
+<section class="skills-section">
+    <div class="skills-headline">
+        <h2>Kurikulum Ekskul <span class="text-glow-warm">Code-Nexa</span></h2>
+        <p>Klik pada teknologi di bawah ini untuk melihat apa saja yang akan kamu pelajari dari dasar!</p>
+    </div>
+
+    <div class="matrix-container">
+        <!-- Menu Navigasi Materi -->
+        <div class="matrix-nav">
+            <button class="matrix-btn active" onclick="switchSkill('html')">
+                <i class="fab fa-html5"></i> HTML5
+            </button>
+            <button class="matrix-btn" onclick="switchSkill('css')">
+                <i class="fab fa-css3-alt"></i> CSS3
+            </button>
+            <button class="matrix-btn" onclick="switchSkill('js')">
+                <i class="fab fa-js"></i> JavaScript
+            </button>
+        </div>
+
+        <!-- Kartu Detail Materi (Glassmorphism) -->
+        <div class="matrix-display glass-card-organic">
+            <div id="skill-content" class="skill-detail-panel">
+                <h3><i class="fab fa-html5" style="color: #ff4500;"></i> HyperText Markup Language (HTML)</h3>
+                <p>Pondasi utama dari setiap website di dunia. Kamu akan belajar bagaimana menyusun kerangka website struktur data, hingga integrasi elemen multimedia modern.</p>
+                <div class="sub-topics">
+                    <span class="topic-tag">Tag & Atribut</span>
+                    <span class="topic-tag">Form & Input</span>
+                    <span class="topic-tag">Semantic HTML</span>
+                    <span class="topic-tag">SEO Dasar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
+        <!-- SECTION CTA (CALL TO ACTION) -->
+<section class="cta-section">
+    <div class="cta-container glass-card-organic">
+        <div class="cta-content">
+            <h2>Siap Menjadi <span class="text-glow-warm">The Next Developer?</span></h2>
+            <p>Jangan lewatkan kesempatan untuk belajar koding, membangun proyek keren, dan berkembang bersama komunitas Code-Nexa.</p>
+        </div>
+        <div class="cta-action">
+            <a href="form.html" class="btn-cta-neon">Gabung Sekarang <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <div id="modalForm" class="modal-overlay">
+    <div class="glass-card modal-content">
+        <span class="close-btn" onclick="tutupForm()">&times;</span>
+        <h2 class="neon-text-purple">Join Code-Nexa</h2>
+        
+        <!-- Tempat memunculkan notifikasi sukses secara interaktif -->
+        <div id="notifSukses" class="success-message" style="display: none;">
+            <div class="success-icon">🎉</div>
+            <h3>Pendaftaran Berhasil!</h3>
+            <p>Data kamu sudah tersimpan. Sampai jumpa di kelas koding!</p>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2026 Code-Nexa SMA. Built with ⚡ Neon Logic.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <div class="cursor-glow"></div>
+
+<style>
+    .cursor-glow {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<script>
+    const glow = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+</script>
+
+<div class="marquee">
+    <div class="marquee-content">
+        <span>HTML5</span> • <span>CSS3</span> • <span>JAVASCRIPT</span> • <span>PYTHON</span> • <span>REACT</span> • <span>NODE.JS</span> • 
+        <span>HTML5</span> • <span>CSS3</span> • <span>JAVASCRIPT</span> • <span>PYTHON</span> • <span>REACT</span> • <span>NODE.JS</span>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+// 1. INTERACTIVE TYPING EFFECT
+// ==========================================
+const kataKata = ["Code-Nexa?", "Tempat Belajar Koding?", "Masa Depan Digital?"];
+let kataIndex = 0;
+let hurufIndex = 0;
+let isMengahpus = false;
+const elemenTeks = document.getElementById("dynamic-typing");
+
+function ketikInteraktif() {
+    const kataSaatIni = kataKata[kataIndex];
+    
+    if (isMengahpus) {
+        elemenTeks.textContent = kataSaatIni.substring(0, hurufIndex - 1);
+        hurufIndex--;
+    } else {
+        elemenTeks.textContent = kataSaatIni.substring(0, hurufIndex + 1);
+        hurufIndex++;
+    }
+
+    let kecepatan = isMengahpus ? 50 : 100;
+
+    if (!isMengahpus && hurufIndex === kataSaatIni.length) {
+        kecepatan = 2000; // Diam sebentar setelah selesai mengetik
+        isMengahpus = true;
+    } else if (isMengahpus && hurufIndex === 0) {
+        isMengahpus = false;
+        kataIndex = (kataIndex + 1) % kataKata.length; // Pindah ke kata berikutnya
+        kecepatan = 500;
+    }
+
+    setTimeout(ketikInteraktif, kecepatan);
+}
+
+// Jalankan efek mengetik saat web dibuka
+document.addEventListener("DOMContentLoaded", ketikInteraktif);
+
+
+// ==========================================
+// 2. INTERACTIVE FORM & LIVE NOTIFICATION
+// ==========================================
+const notif = document.getElementById("notifSukses");
+
+// ==========================================
+// CONTROL MODAL (Fungsi Buka/Tutup)
+// =========================================
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Pastikan ini menambah class 'show' (bukan class lain)
+            entry.target.classList.add('show'); 
+        }
+    });
+}, { threshold: 0.1 }); // Mengatur sensitivitas scroll
+
+// Menjalankan fungsi setelah seluruh dokumen selesai dimuat
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+    });
+});
+
+// DATA KURIKULUM EKSKUL
+const skillData = {
+    html: {
+        title: '<i class="fab fa-html5" style="color: #ff4500;"></i> HyperText Markup Language (HTML)',
+        desc: 'Pondasi utama dari setiap website di dunia. Kamu akan belajar bagaimana menyusun kerangka website, struktur data pendaftaran, hingga integrasi elemen multimedia modern.',
+        topics: ['Tag & Atribut', 'Form & Input', 'Semantic HTML', 'SEO Dasar']
+    },
+    css: {
+        title: '<i class="fab fa-css3-alt" style="color: #00d2ff;"></i> Cascading Style Sheets (CSS)',
+        desc: 'Seni visual dari koding website. Di sini kita akan membedah rahasia membuat desain bertema dark mode, teknik grid modern, efek kaca transparan (glassmorphism), hingga animasi transisi yang mulus.',
+        topics: ['Flexbox & Grid', 'Neon Glow Styling', 'Responsive Design', 'CSS Animation']
+    },
+    js: {
+        title: '<i class="fab fa-js" style="color: #ffdf00;"></i> JavaScript (JS Basics)',
+        desc: 'Otot dan otak belakang layar yang membuat website hidup. Kamu akan belajar cara memanipulasi elemen HTML, menangani tombol klik pendaftaran, hingga melakukan validasi data backend secara real-time.',
+        topics: ['DOM Manipulation', 'Event Listener', 'Form Validation', 'Asynchronous/Timeout']
+    }
+};
+
+// FUNGSI UNTUK MERUBAH TAMPILAN MATERI
+function switchSkill(skillKey) {
+    // 1. Ganti status tombol aktif
+    const buttons = document.querySelectorAll('.matrix-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Tambah class active ke tombol yang diklik
+    event.currentTarget.classList.add('active');
+
+    // 2. Animasi transisi konten memudar (fade)
+    const contentPanel = document.getElementById('skill-content');
+    contentPanel.style.opacity = 0;
+    
+    setTimeout(() => {
+        // Ambil data berdasarkan key (html/css/js)
+        const data = skillData[skillKey];
+        
+        // Buat susunan tag html baru untuk topik pendaftar
+        let tagsHTML = '';
+        data.topics.forEach(topic => {
+            tagsHTML += `<span class="topic-tag">${topic}</span>`;
+        });
+
+        // Masukkan data baru ke dalam komponen box
+        contentPanel.innerHTML = `
+            <h3>${data.title}</h3>
+            <p>${data.desc}</p>
+            <div class="sub-topics">
+                ${tagsHTML}
+            </div>
+        `;
+        
+        // Kembalikan kepekatan warna ke normal
+        contentPanel.style.opacity = 1;
+    }, 150);
+}
+</script>
+</body>
+</html>

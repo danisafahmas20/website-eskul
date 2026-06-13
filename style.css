@@ -1,0 +1,670 @@
+/* RESET & GLOBAL */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    background-image: linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: white;
+    line-height: 1.6;
+}
+
+/* NAVIGASI */
+header {
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    border-bottom: 1px solid #222;
+}
+
+#about {
+    position: relative;
+    background: linear-gradient(rgba(8, 8, 8, 0.8), rgba(8, 8, 8, 0.8)), 
+                url('/bg.\ kelas.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 10%;
+}
+
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 10%;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; }
+.logo span { color: #bc13fe; text-shadow: 0 0 10px #bc13fe; }
+
+nav ul { display: flex; list-style: none; gap: 20px; }
+nav ul li a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+nav ul li a:hover { color: #00d2ff; text-shadow: 0 0 10px #00d2ff; }
+
+.btn-join { background: #bc13fe; padding: 5px 15px; border-radius: 5px; box-shadow: 0 0 10px #bc13fe; }
+
+
+/* SPACING & GRID */
+section { padding: 100px 10%; }
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 40px; }
+.text-center { text-align: center; margin-bottom: 20px; }
+
+/* CARDS MATERI & MENTOR */
+.materi-card, .mentor-card {
+    background: #111; padding: 30px; border-radius: 20px;
+    border: 1px solid #28188d; transition: 0.4s;
+}
+
+.materi-card:hover, .mentor-card:hover { transform: translateY(-10px); }
+
+.neon-border-blue:hover { border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
+.neon-border-purple:hover { border-color: #bc13fe; box-shadow: 0 0 20px rgba(188, 19, 254, 0.3); }
+
+/* GALLERY */
+.gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 40px;
+}
+
+.gallery-item img {
+    width: 100%; border-radius: 10px; border: 1px solid #333; transition: 0.3s;
+}
+
+.gallery-item img:hover { border-color: #00d2ff; filter: brightness(1.2); }
+
+/* NEON TEXT */
+/* Warna Biru Soft */
+.neon-text-blue {
+    color: #00d2ff;
+    /* Gunakan hanya 2 lapis bayangan dengan blur yang lebih besar */
+    text-shadow: 
+        0 0 5px rgba(0, 210, 255, 0.5), 
+        0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+/* Warna Ungu Soft */
+.neon-text-purple {
+    color: #bc13fe;
+    text-shadow: 
+        0 0 5px rgba(188, 19, 254, 0.5), 
+        0 0 15px rgba(188, 19, 254, 0.3);
+}
+.text-gradient { background: linear-gradient(90deg, #00d2ff, #bc13fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+
+/* MODAL */
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000;
+    justify-content: center; align-items: center; opacity: 0; transition: 0.3s;
+}
+.modal-overlay.active { display: flex; opacity: 1; }
+.glass-card { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid #bc13fe; text-align: center; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav ul { display: none; }
+    section { padding: 60px 5%; }
+}
+
+/* Efek Lampu Neon Berkedip */
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #bc13fe, 0 0 40px #bc13fe, 0 0 80px #bc13fe;
+    }
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }
+}
+
+
+.materi-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.materi-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #00d2ff);
+    animation: rotate 4s linear infinite;
+    display: none;
+}
+
+.materi-card:hover::before {
+    display: block;
+}
+
+.materi-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px; /* Jarak border */
+    background: #111;
+    border-radius: 18px;
+    z-index: 1;
+}
+
+/* Pastikan konten card tetap di atas animasi border */
+.materi-card * {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+/* Elemen sembunyi di awal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Sedikit turun ke bawah */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Muncul dari bawah */
+.reveal-bottom { transform: translateY(50px); }
+
+/* Muncul dari kiri */
+.reveal-left { transform: translateX(-50px); }
+
+/* Saat class 'show' aktif (via JS) */
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ANIMASI GLITCH CODE-NEXA --- */
+
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+/* Membuat salinan teks ungu (Pseudo-element Before) */
+.glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #bc13fe; /* Warna Ungu */
+    background: #080808; /* Samakan dengan BG body */
+    overflow: hidden;
+    text-shadow: -2px 0 #bc13fe;
+    clip: rect(0, 900px, 0, 0); /* Sembunyi di awal */
+}
+
+/* Membuat salinan teks biru (Pseudo-element After) */
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #00d2ff; /* Warna Biru */
+    background: #080808; /* Samakan dengan BG body */
+    overflow: hidden;
+    text-shadow: 2px 0 #00d2ff;
+    clip: rect(0, 900px, 0, 0); /* Sembunyi di awal */
+}
+
+/* Jalankan Animasi Saat Hover */
+.glitch:hover::before {
+    animation: glitch-anim 0.3s infinite linear alternate-reverse;
+}
+
+.glitch:hover::after {
+    animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+}
+
+
+@keyframes softFlicker {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(188, 19, 254, 0.4);
+    }
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 3px rgba(188, 19, 254, 0.2);
+    }
+}
+
+.neon-flicker-pulse {
+    animation: softFlicker 4s infinite ease-in-out;
+}
+
+.stat-box {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 10%;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    text-align: center;
+}
+.stat-box { font-size: 2.5rem; margin-bottom: 5px; }
+.stat-box { color: #666; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+/* Container Dasar */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+/* Tipografi Judul */
+.main-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
+/* Neon yang Redup & Soft */
+.soft-neon-purple {
+    color: #bc13fe;
+    /* Cahaya tipis, tidak menyilaukan */
+    text-shadow: 0 0 10px rgba(188, 19, 254, 0.4); 
+    position: relative;
+}
+
+/* Deskripsi yang nyaman dibaca */
+.about-description {
+    color: #aaa;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+/* List Fitur */
+.about-features {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feat-item {
+    font-size: 0.85rem;
+    color: #00d2ff;
+    background: rgba(0, 210, 255, 0.05);
+    padding: 5px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+/* Ornamen Visual (Background Aura) */
+.about-visual {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glow-orb {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    filter: blur(80px); /* Blur tinggi agar cahayanya lembut */
+    opacity: 0.2; /* Sangat redup */
+    z-index: -1;
+}
+
+.orb-purple { background: #bc13fe; top: 0; right: 0; }
+.orb-blue { background: #00d2ff; bottom: 0; left: 0; }
+
+.visual-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Courier New', monospace;
+    color: #555;
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-visual {
+        display: none; /* Sembunyikan visual di HP agar fokus ke teks */
+    }
+    .about-features {
+        justify-content: center;
+    }
+}
+
+@keyframes softNeonFlicker {
+    0%, 100% { text-shadow: 0 0 10px rgba(188, 19, 254, 0.4); }
+    33% { text-shadow: 0 0 5px rgba(188, 19, 254, 0.2); }
+    66% { text-shadow: 0 0 15px rgba(188, 19, 254, 0.5); }
+}
+
+.neon-flicker {
+    animation: softNeonFlicker 5s infinite;
+}
+
+.marquee {
+    overflow: hidden;
+    background: #111;
+    padding: 15px 0;
+    border-top: 1px solid #bc13fe;
+    border-bottom: 1px solid #bc13fe;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: scrolling 20s linear infinite;
+}
+
+.marquee-content span {
+    font-weight: bold;
+    color: #fff;
+    margin: 0 40px;
+    letter-spacing: 3px;
+    opacity: 0.5;
+}
+
+@keyframes scrolling {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.mentor-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.mentor-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #00d2ff);
+    animation: rotate 4s linear infinite;
+    display: none;
+}
+
+.mentor-card:hover::before {
+    display: block;
+}
+
+.mentor-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px; /* Jarak border */
+    background: #111;
+    border-radius: 18px;
+    z-index: 1;
+}
+
+/* Pastikan konten card tetap di atas animasi border */
+.mentor-card * {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+/* Efek Mengetik Kursor */
+#dynamic-typing::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Tombol Switch Tema */
+.theme-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.theme-btn:hover {
+    transform: scale(1.1);
+    border-color: #00d2ff;
+}
+
+/* Tampilan Notifikasi Sukses di dalam Form */
+.success-message {
+    animation: fadeInUp 0.5s ease forwards;
+    padding: 20px;
+}
+.success-icon {
+    font-size: 3rem;
+    animation: bounce 1s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Mode Alternatif (Cyber Pink Mode) saat tombol tema diklik */
+body.cyber-pink {
+    background: #0f0514;
+    background-image: linear-gradient(rgba(188, 19, 254, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(188, 19, 254, 0.03) 1px, transparent 1px);
+}
+body.cyber-pink .soft-neon-purple {
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+}
+
+/* ==========================================
+   CTA SECTION WITH ORGANIC GLASSMORPHISM
+   ========================================== */
+.cta-section {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0d0d11; /* Latar belakang gelap */
+}
+
+.glass-card-organic {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    
+    /* Bentuk organik melengkung lembut, menghindari boxy */
+    border-radius: 24px; 
+    
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    
+    /* Soft warm glow effect */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+                0 0 25px rgba(255, 77, 0, 0.05); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card-organic:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+                0 0 35px rgba(255, 77, 0, 0.1); /* Pendaran neon diperlembut saat hover */
+}
+
+.cta-content h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.text-glow-warm {
+    color: #4336ff; /* Warna oranye api hangat */
+    text-shadow: 0 0 8px rgba(175, 54, 255, 0.4);
+}
+
+.cta-content p {
+    color: #b0b0bc;
+    font-size: 1rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* TOMBOL CTA NEON */
+.btn-cta-neon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #0000ff, #d400ff); /* Tema Gradasi Api */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px; /* Rounded pill shape */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 85, 255, 0.2);
+}
+
+.btn-cta-neon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 68, 255, 0.4); /* Efek glow tombol tetap nyaman di mata */
+}
+
+/* RESPONSIF UNTUK HP */
+@media (max-width: 768px) {
+    .glass-card-organic {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 24px;
+    }
+    
+    .cta-content p {
+        margin-bottom: 10px;
+    }
+    
+    .btn-cta-neon {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   INTERACTIVE SKILLS MATRIX STYLE
+   ========================================== */
+.skills-section {
+    padding: 60px 20px;
+    background: #0d0d11;
+    text-align: center;
+}
+
+.skills-headline h2 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.skills-headline p {
+    color: #b0b0bc;
+    margin-bottom: 40px;
+}
+
+.matrix-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Navigasi Tombol */
+.matrix-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.matrix-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #b0b0bc;
+    padding: 12px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.matrix-btn:hover {
+    color: #ffffff;
+    border-color: rgba(134, 54, 255, 0.3);
+    box-shadow: 0 0 15px rgba(208, 54, 255, 0.1); /* Soft glow nyaman di mata */
+}
+
+.matrix-btn.active {
+    background: linear-gradient(135deg, #0800ff1a, #1100ff33);
+    border-color: #3643ff;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(98, 54, 255, 0.2);
+}
+
+/* Konten Display */
+.matrix-display {
+    text-align: left;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+}
+
+.skill-detail-panel h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-detail-panel p {
+    color: #b0b0bc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Kumpulan Tag Materi */
+.sub-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.topic-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}

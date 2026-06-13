@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran | CODE-NEXA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css"> <!-- CSS khusus untuk halaman daftar -->
+</head>
+<body>
+
+    <!-- Tombol Kembali ke Beranda -->
+    <div class="back-nav">
+        <a href="index.html" class="btn-back">← Kembali ke Beranda</a>
+    </div>
+
+    <div class="form-wrapper">
+        <!-- Ornamen Aura Background Redup -->
+        <div class="form-glow-orb orb-1"></div>
+        <div class="form-glow-orb orb-2"></div>
+
+        <div class="form-container glass-card">
+            <div class="form-header">
+                <h1 class="soft-neon-purple">Join <span class="soft-neon-blue">Code-Nexa</span></h1>
+                <p>Silakan isi formulir di bawah ini untuk memulai perjalanan kodingmu bersama kami.</p>
+            </div>
+
+            <!-- Form terintegrasi dengan FormSubmit agar masuk ke Email otomatis -->
+            <!-- Action dialihkan ke server Web3Forms -->
+        <form id="pendaftaranEkskul" action="https://api.web3forms.com/submit" method="POST">
+
+             <!-- PENTING: Ganti teks di bawah ini dengan Access Key yang kamu copy dari Gmail tadi -->
+                     <input type="hidden" name="access_key" value="edf87581-15c2-4b20-9ef4-ca0a12f0ca46">
+
+                    <!-- Pengalihan otomatis kembali ke beranda setelah siswa sukses mendaftar -->
+                     <input type="hidden" name="redirect" value="http://127.0.0.1:5500/index.html">
+    
+                    <!-- Menyembunyikan fitur captcha agar siswa tidak pusing mengisi teka-teki -->
+                  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="input-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="Nama Lengkap" placeholder="Contoh: Andi Wijaya" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="kelas">Kelas</label>
+                        <input type="text" id="kelas" name="Kelas" placeholder="Contoh: X-3" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="nisn">NISN</label>
+                        <input type="number" id="nisn" name="NISN" placeholder="10 digit nomor" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="whatsapp">Nomor WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="No WhatsApp" placeholder="08xxxxxxxxxx" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="alasan">Mengapa tertarik gabung Code-Nexa?</label>
+                    <textarea id="alasan" name="Alasan Bergabung" rows="4" placeholder="Ceritakan sedikit ketertarikanmu..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn-neon">Kirim Pendaftaran 🚀</button>
+            </form>
+        </div>
+    </div>
+    <style> /* ANIMASI LOADING SPINNER */
+.spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+</style>
+<script src="form.js"></script>
+</body>
+</html>
