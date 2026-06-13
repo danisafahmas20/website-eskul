@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CODE-NEXA | Ekskul Koding</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <nav>
+         <nav>
             <div class="logo">CODE<span>NEXA</span></div>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#materi">Materi</a></li>
                 <li><a href="#mentor">Mentor</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <!-- Di bagian navigasi header (index.html) -->
-                <li><a href="/form.html" class="btn-join">Join</a></li>
+                <li><a href="form.html" class="btn-join">Join</a></li>
                 <li><button id="theme-toggle" class="theme-btn">🌙</button></li>
             </ul>
         </nav>
+
     </header>
 
     <main>
@@ -29,7 +30,7 @@
         <div class="about-text">
             <h1 class="main-title">
     What is <span id="dynamic-typing" class="soft-neon-purple"></span>
-</h1>
+            </h1>
             <p class="about-description">
                 Sebuah ruang kreatif di SMA bagi para calon pengembang teknologi. Kami bukan sekadar belajar koding, tapi membangun solusi nyata melalui kolaborasi, logika, dan kreativitas tanpa batas.
             </p>
@@ -47,144 +48,211 @@
     </div>
 </section>
 
-        <section id="materi" class="reveal reveal-left">
-            <h2 class="text-center neon-text-blue">Materi Pembelajaran</h2>
-            <div class="grid-container">
-                <div class="materi-card neon-border-purple">
-                    <div class="icon">🌐</div>
-                    <h3>Web Development</h3>
-                    <p>Belajar HTML5, CSS3, dan JavaScript untuk membuat website interaktif.</p>
-                </div>
-                <div class="materi-card neon-border-blue">
-                    <div class="icon">🐍</div>
-                    <h3>Python Basics</h3>
-                    <p>Mengenal logika pemrograman dan pengolahan data menggunakan Python.</p>
-                </div>
-                <div class="materi-card neon-border-purple">
-                    <div class="icon">📱</div>
-                    <h3>Mobile Apps</h3>
-                    <p>Eksplorasi pembuatan aplikasi android dan iOS sederhana.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="hackathon-section">
-    <div class="hackathon-glow-bg"></div>
-    <div class="hackathon-container glass-card-organic">
-        <div class="hackathon-info">
-            <span class="hackathon-badge"><i class="fas fa-trophy"></i> Coming Soon Event</span>
-            <h2>NexaHack <span class="text-glow-blue">2026</span></h2>
-            <p>Kompetisi maraton koding 24 jam tingkat sekolah! Tantang dirimu untuk membangun solusi website inovatif bertema <em>"Smart School Dashboard"</em> secara tim. Menangkan sertifikat eksklusif dan piala bergilir!</p>
-            
-            <div class="hackathon-meta-grid">
-                <div class="meta-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <div>
-                        <span>Pelaksanaan:</span>
-                        <strong>Agustus 2026</strong>
-                    </div>
-                </div>
-                <div class="meta-item">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <span>Kuota Tim:</span>
-                        <strong>Maksimal 3 Siswa / Tim</strong>
-                    </div>
-                </div>
-            </div>
+       <section class="materi-section">
+    <div class="materi-container">
+        
+        <h2 class="materi-title">Materi Pembelajaran</h2>
+        
+        <div class="materi-grid">
+    
+    <div class="materi-card glass-card-organic" onclick="bukaModalMateri('modal-webdev')">
+        <div class="card-icon-wrapper html-glow">
+            <i class="fa-brands fa-html5"></i>
         </div>
-
-        <div class="hackathon-countdown-box">
-            <h4>Pendaftaran Dibuka Dalam:</h4>
-            <div class="countdown-timer">
-                <div class="time-block">
-                    <span id="days">00</span>
-                    <small>Hari</small>
-                </div>
-                <div class="time-block">
-                    <span id="hours">00</span>
-                    <small>Jam</small>
-                </div>
-                <div class="time-block">
-                    <span id="minutes">00</span>
-                    <small>Menit</small>
-                </div>
-            </div>
-            <a href="form.html" class="btn-hackathon-join">Booking Slot Tim Kamu <i class="fas fa-lock-open"></i></a>
-        </div>
+        <h3>Web Development</h3>
+        <p>Belajar HTML5, CSS3, dan JavaScript untuk membuat website interaktif.</p>
+        <span class="btn-baca-materi">Pelajari Materi <i class="fas fa-arrow-right"></i></span>
     </div>
+
+    <div class="materi-card glass-card-organic" onclick="bukaModalMateri('modal-python')">
+        <div class="card-icon-wrapper python-glow">
+            <i class="fa-brands fa-python"></i>
+        </div>
+        <h3>Python Basics</h3>
+        <p>Mengenal logika pemrograman dan pengolahan data menggunakan Python.</p>
+        <span class="btn-baca-materi">Pelajari Materi <i class="fas fa-arrow-right"></i></span>
+    </div>
+
+    <div class="materi-card glass-card-organic" onclick="bukaModalMateri('modal-mobile')">
+        <div class="card-icon-wrapper mobile-glow">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
+        <h3>Mobile Apps</h3>
+        <p>Eksplorasi pembuatan aplikasi Android dan iOS sederhana.</p>
+        <span class="btn-baca-materi">Pelajari Materi <i class="fas fa-arrow-right"></i></span>
+    </div>
+
+</div>
 </section>
 
-        <section id="mentor" class="reveal">
-            <h2 class="text-center neon-text-blue">Our Instructors</h2>
-            <div class="grid-container">
-                <div class="mentor-card neon-border-purple">
-                    <div class="mentor-img"></div>
+<div id="modal-webdev" class="materi-modal-overlay" onclick="tutupModalMateri(event, 'modal-webdev')">
+    <div class="materi-modal-content glass-card-organic">
+        <button class="modal-close-btn" onclick="tutupModalMateriTombol('modal-webdev')">&times;</button>
+        <div class="modal-header-tag html-glow"><i class="fas fa-globe"></i> WEB DEVELOPMENT</div>
+        <h2>Kombinasi Tiga Pilar Web</h2>
+        <div class="modal-body-scroll">
+            <p>Website yang hebat menggabungkan struktur, keindahan gaya visual, dan interaksi logika yang hidup.</p>
+            
+            <div class="sub-materi-box">
+                <h4><i class="fab fa-html5" style="color: #ff4500;"></i> HTML (HyperText Markup Language)</h4>
+                <p>HTML adalah <strong>tulang punggung</strong> atau struktur dasar website. HTML menentukan letak tombol, teks, gambar, atau video menggunakan sistem tag.</p>
+            </div>
+            
+            <div class="sub-materi-box">
+                <h4><i class="fab fa-css3-alt" style="color: #00d2ff;"></i> CSS (Cascading Style Sheets)</h4>
+                <p>CSS adalah <strong>baju atau dekorasi</strong> visual website. Mengatur warna, ukuran font, layout responsif, hingga efek pendaran neon yang estetik.</p>
+            </div>
+            
+            <div class="sub-materi-box">
+                <h4><i class="fab fa-js-square" style="color: #ffbd2e;"></i> JavaScript (JS)</h4>
+                <p>JavaScript adalah <strong>sistem saraf atau otak</strong> yang memberikan kehidupan interaktif, seperti memproses kalkulasi dan validasi logika.</p>
+            </div>
+        </div>
+        <a href="simulation.html" class="modal-btn-arena">Masuk ke Arena Simulasi <i class="fas fa-gamepad"></i></a>
+    </div>
+</div>
+
+<div id="modal-python" class="materi-modal-overlay" onclick="tutupModalMateri(event, 'modal-python')">
+    <div class="materi-modal-content glass-card-organic">
+        <button class="modal-close-btn" onclick="tutupModalMateriTombol('modal-python')">&times;</button>
+        <div class="modal-header-tag python-glow"><i class="fab fa-python"></i> PYTHON BASICS</div>
+        <h2>Sintaks Dasar Python</h2>
+        <div class="modal-body-scroll">
+            <p>Python adalah bahasa pemrograman populer yang sangat disukai karena struktur kodenya bersih dan mudah dipahami layaknya bahasa Inggris.</p>
+            
+            <div class="sub-materi-box">
+                <h4>Fungsi <code>print()</code></h4>
+                <p>Digunakan untuk menampilkan teks atau data ke layar terminal. Contoh: <code>print("Hello Nexa")</code>.</p>
+            </div>
+            
+            <div class="sub-materi-box">
+                <h4>Variabel & Tipe Data</h4>
+                <p>Wadah memori untuk menyimpan data sementara. Seperti teks (String) ataupun angka bulat (Integer).</p>
+            </div>
+            
+            <div class="sub-materi-box">
+                <h4>Logika Kondisional (if-else)</h4>
+                <p>Mengatur jalannya alur program komputer berdasarkan evaluasi kondisi benar atau salah.</p>
+            </div>
+        </div>
+        <a href="python-sim.html" class="modal-btn-arena" style="background: linear-gradient(135deg, #306998, #ffd43b); color: #0a0a0e;">Masuk ke Python Arena <i class="fas fa-gamepad"></i></a>
+    </div>
+</div>
+
+<div id="modal-mobile" class="materi-modal-overlay" onclick="tutupModalMateri(event, 'modal-mobile')">
+    <div class="materi-modal-content glass-card-organic">
+        <button class="modal-close-btn" onclick="tutupModalMateriTombol('modal-mobile')">&times;</button>
+        <div class="modal-header-tag mobile-glow"><i class="fas fa-mobile-alt"></i> MOBILE APPS</div>
+        <h2>Mobile Apps Development</h2>
+        <div class="modal-body-scroll">
+            <p>Merancang dan membangun aplikasi interaktif yang dikhususkan berjalan di perangkat smartphone maupun tablet.</p>
+            
+            <div class="sub-materi-box">
+                <h4>Dua Ekosistem Raksasa</h4>
+                <p>Aplikasi dikembangkan untuk platform <strong>Android</strong> (didukung Google) dan platform <strong>iOS</strong> (ekosistem Apple).</p>
+            </div>
+            
+            <div class="sub-materi-box">
+                <h4>Native vs Cross-Platform</h4>
+                <p>Native dibuat khusus untuk satu sistem operasi, sementara Cross-Platform (seperti Flutter atau React Native) memungkinkan satu kode berjalan di kedua OS sekaligus.</p>
+            </div>
+        </div>
+        <button class="modal-btn-arena" style="background: #333; cursor: not-allowed;" disabled>Materi Segera Hadir <i class="fas fa-lock"></i></button>
+    </div>
+</div>
+</section>
+
+      <section class="instructors-section">
+    <div class="nexa-container">
+        
+        <h2 class="section-glow-title text-glow-blue">Our Instructors</h2>
+        
+        <div class="instructors-grid">
+            
+            <div class="instructor-card glass-card-organic materi-card neon-border-purple">
+                <div class="instructor-avatar-wrapper html-glow">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="instructor-info">
                     <h3>Kak Budi</h3>
-                    <p class="text-gradient">Senior Web Dev</p>
-                    <p class="desc">Expert di bidang UI/UX dan ReactJS dengan pengalaman 3 tahun.</p>
+                    <span class="instructor-role">Senior Web Dev</span>
+                    <p>Expert di bidang UI/UX dan ReactJS dengan pengalaman 3 tahun.</p>
+                    <div class="instructor-badges">
+                        <span class="badge-tech html-tag">HTML5</span>
+                        <span class="badge-tech css-tag">CSS3</span>
+                        <span class="badge-tech js-tag">React</span>
+                    </div>
                 </div>
-                <div class="mentor-card neon-border-blue">
-                    <div class="mentor-img"></div>
+            </div> <div class="instructor-card glass-card-organic materi-card neon-border-purple">
+                <div class="instructor-avatar-wrapper python-glow">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="instructor-info">
                     <h3>Kak Siti</h3>
-                    <p class="text-gradient">Data Scientist</p>
-                    <p class="desc">Mengajar Python dan pengolahan database secara menyenangkan.</p>
+                    <span class="instructor-role">Data Scientist</span>
+                    <p>Mengajar Python dan pengolahan database secara menyenangkan.</p>
+                    <div class="instructor-badges">
+                        <span class="badge-tech python-badge">Python</span>
+                        <span class="badge-tech sql-badge">SQL</span>
+                        <span class="badge-tech ai-badge">AI</span>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </div> </div> </div>
+</section>
 
-        <section class="simulation-section">
-    <div class="simulation-header">
-        <h2><i class="fas fa-terminal"></i> Code-Nexa <span class="text-glow-warm">Interactive Lab</span></h2>
-        <p>Uji kemampuan logikamu! Selesaikan tantangan koding di bawah ini langsung dari browser.</p>
-    </div>
-
-    <div class="simulation-container matrix-grid">
-        <div class="challenge-box glass-card-organic">
-            <span class="challenge-badge">🎯 Tantangan Hari Ini</span>
-            <h3>Membuat Judul Utama Website</h3>
-            <p>Di dunia web development, tag HTML digunakan untuk menyusun kerangka. Tugasmu adalah melengkapi baris kode di sebelah kanan agar menghasilkan tulisan judul <strong>"Halo Dunia"</strong> menggunakan tag judul terbesar (Heading 1).</p>
+<section class="activities-section">
+    <div class="nexa-container">
+        <h2 class="section-glow-title text-glow-blue">Our Activities</h2>
+        
+        <div class="activities-grid">
             
-            <div class="clue-box">
-                <strong>💡 Petunjuk Lengkap:</strong>
-                <ul>
-                    <li>Gunakan tag pembuka <code>&lt;h1&gt;</code> dan tag penutup <code>&lt;/h1&gt;</code>.</li>
-                    <li>Tuliskan teks tepat di antara kedua tag tersebut tanpa spasi berlebih.</li>
-                </ul>
-            </div>
-            <button class="btn-check-code" onclick="cekJawabanKoding()">Jalankan & Periksa Kode 🚀</button>
-        </div>
-
-        <div class="editor-box-container glass-card-organic">
-            <div class="simulator-header">
-                <div class="window-dots">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
+            <div class="activity-card">
+                <div class="activity-image-container">
+                    <img src="/anak lk.jpg" alt="Coding Challenge">
+                    <div class="activity-overlay">
+                        <div class="activity-tag text-glow-warm">CHALLENGE</div>
+                        <h4>Daily Coding</h4>
+                        <p>Mengasah logika pemrograman lewat tantangan harian.</p>
+                    </div>
                 </div>
-                <span class="window-title">latihan_dasar.html</span>
             </div>
-            <div class="editor-input-area">
-                <textarea id="user-code-input" spellcheck="false" placeholder="Ketik kodemu di sini...">&lt;h1&gt;Tulis Sesuatu Di Sini&lt;/h1&gt;</textarea>
+
+            <div class="activity-card">
+                <div class="activity-image-container">
+                    <img src="/klmpk.jpg" alt="Web Development Project">
+                    <div class="activity-overlay">
+                        <div class="activity-tag text-glow-blue">PROJECT</div>
+                        <h4>Team Build</h4>
+                        <p>Kolaborasi membangun website komunitas sekolah.</p>
+                    </div>
+                </div>
             </div>
-            <div class="simulator-divider"></div>
-            <div class="preview-label">Hasil Output Browser:</div>
-            <div id="lab-preview-output" class="lab-output-window">
-                <span style="color: #696979; font-style: italic;">Hasil kodemu akan muncul di sini...</span>
+
+            <div class="activity-card">
+                <div class="activity-image-container">
+                    <img src="/images (1).jpg" alt="Algorithm Diskusi">
+                    <div class="activity-overlay">
+                        <div class="activity-tag text-glow-blue">LEARNING</div>
+                        <h4>Peer Review</h4>
+                        <p>Belajar bersama memecahkan algoritma dasar.</p>
+                    </div>
+                </div>
             </div>
+
+            <div class="activity-card">
+                <div class="activity-image-container">
+                    <img src="/images.jpg" alt="Game Development">
+                    <div class="activity-overlay">
+                        <div class="activity-tag text-glow-warm">CREATIVE</div>
+                        <h4>Game Crafting</h4>
+                        <p>Simulasi logika dasar pembuatan game 2D.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
-
-        <section id="gallery" class="reveal">
-            <h2 class="text-center neon-text-blue">Our Activities</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="/anak lk.jpg" alt="Kegiatan 1"></div>
-                <div class="gallery-item"><img src="/klmpk.jpg" alt="Kegiatan 2"></div>
-                <div class="gallery-item"><img src="/images (1).jpg" alt="Kegiatan 3"></div>
-                <div class="gallery-item"><img src="/images.jpg" alt="Kegiatan 4"></div>
-            </div>
-        </section>
 
         <!-- SECTION MATRIKS KURIKULUM INTERAKTIF -->
 <section class="skills-section">
@@ -223,6 +291,46 @@
     </div>
 </section>
         
+<section class="faq-section">
+    <div class="nexa-container">
+        
+        <h2 class="section-glow-title text-glow-blue">Why Code-Nexa?</h2>
+        
+        <div class="faq-master-wrapper">
+            
+            <div class="faq-card glass-card-organic" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <h4><i class="fas fa-question-circle" style="color: #00d2ff; margin-right: 10px;"></i> Apakah harus bisa coding dulu sebelum gabung?</h4>
+                    <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nggak sama sekali! Kita semua belajar dari nol besar. Nanti bakal dibimbing bareng para instruktur dari dasar HTML, CSS, sampai logika Python.</p>
+                </div>
+            </div>
+
+            <div class="faq-card glass-card-organic" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <h4><i class="fas fa-laptop-code" style="color: #ff4500; margin-right: 10px;"></i> Apa aja yang bakal kita bikin nanti?</h4>
+                    <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Banyak banget! Mulai dari bikin web portofolio pribadimu sendiri, bikin game simulator logika, sampai proyek website komunitas sekolah bareng teman-teman.</p>
+                </div>
+            </div>
+
+            <div class="faq-card glass-card-organic" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <h4><i class="fas fa-gamepad" style="color: #ffbd2e; margin-right: 10px;"></i> Gimana sistem belajarnya, apakah ngebosenin?</h4>
+                    <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tenang, sistem belajar kita pakai konsep <i>Interactive Arena Simulation</i>. Jadi kamu nggak cuma baca teori, tapi langsung ngetik kode dan dapet XP layaknya main game RPG!</p>
+                </div>
+            </div>
+
+        </div> </div>
+</section>
+
         <!-- SECTION CTA (CALL TO ACTION) -->
 <section class="cta-section">
     <div class="cta-container glass-card-organic">
@@ -457,6 +565,43 @@ function jalankanCountdownHackathon() {
 
 // Jalankan otomatis sistem hitung mundur saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', jalankanCountdownHackathon);
+
+/**
+ * ==========================================================================
+ * CODE-NEXA INTERACTIVE MODAL MATERI ENGINE
+ * ==========================================================================
+ */
+
+// 1. Fungsi Membuka Jendela Modal
+function bukaModalMateri(idModal) {
+    const targetModal = document.getElementById(idModal);
+    if (targetModal) {
+        targetModal.classList.add('modal-active');
+        // Kunci scroll layar utama saat modal terbuka
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 2. Fungsi Menutup Jendela Modal jika area luar hitam diklik
+function tutupModalMateri(event, idModal) {
+    // Memastikan modal hanya menutup jika yang diklik area overlay hitam, bukan card kontennya
+    if (event.target === event.currentTarget) {
+        const targetModal = document.getElementById(idModal);
+        if (targetModal) {
+            targetModal.classList.remove('modal-active');
+            document.body.style.overflow = '';
+        }
+    }
+}
+
+// 3. Fungsi Menutup Jendela Modal Menggunakan Tombol Close Silang (X)
+function tutupModalMateriTombol(idModal) {
+    const targetModal = document.getElementById(idModal);
+    if (targetModal) {
+        targetModal.classList.remove('modal-active');
+        document.body.style.overflow = '';
+    }
+}
 </script>
 </body>
 </html>

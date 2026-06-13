@@ -68,6 +68,21 @@
             </form>
         </div>
     </div>
+
+    <div class="cursor-glow"></div>
+    <style>
+        .cursor-glow {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+    }
+    </style>
+
     <style> /* ANIMASI LOADING SPINNER */
 .spinner {
     display: inline-block;

@@ -1,4 +1,8 @@
 /* RESET & GLOBAL */
+html {
+    scroll-behavior: smooth; /* Efek meluncur mulus otomatis di seluruh halaman */
+    scroll-padding-top: 80px; /* JAGA-JAGA: Beri jarak aman agar judul seksi tidak tertutup navbar yang melayang (fixed navbar) */
+}
 * {
     margin: 0; padding: 0; box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
@@ -915,4 +919,662 @@ body.cyber-pink .soft-neon-purple {
         grid-template-columns: 1fr;
         padding: 25px !important;
     }
+}
+
+/* ==========================================================================
+   CSS MASTER: SECTION CARD MATERI & POP-UP MODAL ENGINE
+   ========================================================================== */
+
+/* Container Section */
+.materi-section {
+    padding: 60px 0;
+    width: 100%;
+}
+
+.materi-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.materi-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+
+/* Grid Layout */
+.materi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Card Styling (Organic Glassmorphism) */
+.materi-card {
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.materi-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Ikon Pembungkus & Soft Glow Effect */
+.card-icon-wrapper {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.html-glow { background: rgba(255, 69, 0, 0.1); color: #ff4500; border: 1px solid rgba(255, 69, 0, 0.2); }
+.python-glow { background: rgba(0, 210, 255, 0.1); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.2); }
+.mobile-glow { background: rgba(160, 32, 240, 0.1); color: #a020f0; border: 1px solid rgba(160, 32, 240, 0.2); }
+
+.materi-card h3 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    margin: 0 0 12px 0;
+}
+
+.materi-card p {
+    color: #a0a0b0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+.btn-baca-materi {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b0b0bc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+}
+
+.materi-card:hover .btn-baca-materi {
+    color: #00ffcc;
+}
+
+/* ==========================================
+   MODAL POP-UP ENGINE STYLING
+   ========================================== */
+.materi-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 4, 6, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Trigger Muncul (Diaktifkan via JS) */
+.materi-modal-overlay.modal-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Konten Utama di Dalam Modal */
+.materi-modal-content {
+    width: 100%;
+    max-width: 500px; /* Batasi lebar maksimal agar tidak terlalu melar */
+    padding: 30px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: #0f0f15 !important;
+    display: flex;
+    flex-direction: column; /* Mengatur semua komponen menyusun ke bawah, bukan ke samping */
+    align-items: flex-start; /* Meratakan semua konten ke sebelah kiri */
+    box-sizing: border-box;
+}
+
+.materi-modal-overlay.modal-active .materi-modal-content {
+    transform: scale(1);
+}
+
+/* Tombol Silang Close di Sudut Kanan Atas */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #606070;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10;
+}
+.modal-close-btn:hover { color: #ffffff; }
+
+/* Tag Kategori di Atas Judul */
+.modal-header-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+/* Judul Utama Modal */
+.materi-modal-content h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+    text-align: left;
+    width: 100%;
+}
+
+/* Area Isi Konten yang Bisa Di-scroll Secara Vertikal Saja */
+.modal-body-scroll {
+    width: 100%; /* Paksa lebar penuh mengikuti kontainer utama */
+    max-height: 300px; /* Batasi tinggi maksimal agar tidak menembus layar */
+    overflow-y: auto; /* Aktifkan scroll atas-bawah jika teks panjang */
+    overflow-x: hidden; /* Matikan total scroll kiri-kanan yang merusak layout */
+    padding-right: 8px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* Kustomisasi Tampilan Scrollbar agar Tipis dan Estetik */
+.modal-body-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.modal-body-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+}
+.modal-body-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.modal-body-scroll::-webkit-scrollbar-thumb:hover {
+    background: #00ffcc;
+}
+
+.modal-body-scroll p {
+    color: #a0a0b0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+
+/* Box Wadah Sub-Materi Internal */
+.sub-materi-box {
+    width: 100%; /* Pastikan box sub-materi melebar sempurna */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.sub-materi-box h4 {
+    margin: 0 0 8px 0;
+    color: #ffffff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sub-materi-box p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #a0a0b0;
+}
+
+/* Tombol Akses ke Halaman Arena */
+.modal-btn-arena {
+    display: flex;
+    width: 100%; /* Membuat tombol memanjang penuh di bagian bawah */
+    background: linear-gradient(135deg, #ff4500, #ff7300);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    margin-top: auto; /* Dorong tombol untuk selalu berada di paling bawah modal */
+}
+
+.modal-btn-arena:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Aturan Responsif Layar Smartphone */
+@media (max-width: 600px) {
+    .materi-modal-content {
+        width: 92%;
+        padding: 20px;
+    }
+    .materi-modal-content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* --- Pembungkus Ikon pada Card --- */
+.card-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem; /* Ukuran logo */
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+/* --- Efek Warna & Soft Glow Per Kategori (Nyaman di Mata) --- */
+.html-glow { 
+    background: rgba(255, 69, 0, 0.1); 
+    color: #ff4500; 
+    border: 1px solid rgba(255, 69, 0, 0.25);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.15);
+}
+
+.python-glow { 
+    background: rgba(0, 210, 255, 0.1); 
+    color: #00d2ff; 
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+}
+
+.mobile-glow { 
+    background: rgba(160, 32, 240, 0.1); 
+    color: #bfa3ff; 
+    border: 1px solid rgba(160, 32, 240, 0.25);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.15);
+}
+
+/* --- Efek Interaktif Saat Card Di-Hover Teman Sekolahmu --- */
+.materi-card:hover .html-glow {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.35);
+    background: rgba(255, 69, 0, 0.15);
+}
+
+.materi-card:hover .python-glow {
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.35);
+    background: rgba(0, 210, 255, 0.15);
+}
+
+.materi-card:hover .mobile-glow {
+    box-shadow: 0 0 20px rgba(160, 32, 240, 0.35);
+    background: rgba(160, 32, 240, 0.15);
+}
+
+/* ==========================================================================
+   CSS EXPANSION: INSTRUCTORS & ACTIVITIES SECTIONS
+   ========================================================================== */
+
+/* Pengatur Jarak Kontainer Global */
+.nexa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.section-glow-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 35px;
+    letter-spacing: 0.5px;
+}
+
+/* --- STYLE UNTUK OUR INSTRUCTORS --- */
+.instructors-section {
+    padding: 50px 0;
+}
+
+/* --- SAKELAR FLEXBOX ANTI-MIRING --- */
+.instructors-grid {
+    display: flex;                  /* Mengaktifkan mode baris fleksibel */
+    flex-direction: row;            /* Memaksa elemen berjejer ke samping (kanan-kiri) */
+    justify-content: space-between; /* Membagi ruang kanan dan kiri secara adil */
+    align-items: stretch;           /* Membuat tinggi kartu Kak Budi & Kak Siti sama rata */
+    gap: 25px;                      /* Jarak aman antar kartu */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 center;
+    box-sizing: border-box;
+}
+
+/* --- UKURAN KARTU INSTRUKTUR --- */
+.instructor-card {
+    flex: 1;                        /* Memaksa kedua kartu membagi lebar wilayah 50% - 50% secara adil */
+    min-width: 0;                   /* Mencegah kartu meluap keluar grid */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* --- RESPONSIVITAS SMARTPHONE --- */
+@media (max-width: 900px) {
+    .instructors-grid {
+        flex-direction: column;     /* Saat layar HP, susunan otomatis kembali tegak lurus ke bawah */
+    }
+}
+/* Lingkaran Ikon Avatar */
+.instructor-avatar-wrapper {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.instructor-info {
+    text-align: left;
+}
+
+.instructor-info h3 {
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+.instructor-role {
+    display: block;
+    font-size: 0.85rem;
+    color: #00d2ff;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.instructor-info p {
+    margin: 0 0 15px 0;
+    color: #a0a0b0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Tag Keahlian di Bawah Instruktur */
+.instructor-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Kontainer Lingkaran Avatar */
+.instructor-avatar-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Membuat lingkaran sempurna */
+    display: flex;
+    align-items: center; /* Mengetengahkan ikon secara vertikal */
+    justify-content: center; /* Mengetengahkan ikon secara horizontal */
+    font-size: 1.8rem; /* Mengatur ukuran besar ikon di dalam lingkaran */
+    flex-shrink: 0; /* Mencegah lingkaran menjadi gepeng saat layar mengecil */
+    transition: all 0.3s ease;
+}
+
+/* Jika menggunakan Foto Gambar asli di kemudian hari */
+.instructor-avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memotong gambar secara proporsional mengikuti lingkaran */
+    border-radius: 50%;
+}
+
+/* Efek Soft Glow & Pewarnaan Batas Lingkaran (Anti-Silau) */
+.html-glow { 
+    background: rgba(255, 69, 0, 0.08); 
+    color: #ff4500; 
+    border: 1.5px solid rgba(255, 69, 0, 0.25);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.15);
+}
+
+.python-glow { 
+    background: rgba(0, 210, 255, 0.08); 
+    color: #00d2ff; 
+    border: 1.5px solid rgba(0, 210, 255, 0.25);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+}
+
+/* Efek Interaktif Tambahan saat Card disentuh Kursort Teman Sekolah */
+.instructor-card:hover .html-glow {
+    box-shadow: 0 0 22px rgba(255, 69, 0, 0.35);
+    background: rgba(255, 69, 0, 0.15);
+}
+
+.instructor-card:hover .python-glow {
+    box-shadow: 0 0 22px rgba(0, 210, 255, 0.35);
+    background: rgba(0, 210, 255, 0.15);
+}
+
+.badge-tech {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.python-badge { background: rgba(0, 210, 255, 0.12); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.2); }
+.sql-badge    { background: rgba(255, 189, 46, 0.12); color: #ffbd2e; border: 1px solid rgba(255, 189, 46, 0.2); }
+.ai-badge     { background: rgba(160, 32, 240, 0.12); color: #bfa3ff; border: 1px solid rgba(160, 32, 240, 0.2); }
+
+.html-tag{ background: rgba(255, 85, 0, 0.12); color: #ff6200; border: 1px solid rgba(255, 115, 0, 0.2); }
+.css-tag { background: rgba(46, 238, 255, 0.12); color: #2ee3ff; border: 1px solid rgba(46, 255, 248, 0.2); }
+.js-tag { background: rgba(46, 32, 240, 0.12); color: #1725b9; border: 1px solid rgba(60, 32, 240, 0.2); }
+/* --- STYLE UNTUK OUR ACTIVITIES (EFEK HOVER OVERLAY) --- */
+.activities-section {
+    padding: 60px 0;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.activity-card {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    background: #14141c;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.activity-image-container {
+    width: 100%;
+    position: relative;
+    aspect-ratio: 4 / 3;
+}
+
+.activity-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Lapisan Kaca Gelap di Atas Gambar */
+.activity-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 10, 14, 0.95) 20%, rgba(10, 10, 14, 0.4) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: left;
+    transition: background 0.3s ease;
+}
+
+.activity-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.activity-overlay h4 {
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+}
+
+.activity-overlay p {
+    color: #8a8a98;
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+/* Efek Interaktivitas Saat Di-hover Teman Sekolah */
+.activity-card:hover img {
+    transform: scale(1.08);
+}
+
+.activity-card:hover .activity-overlay {
+    background: linear-gradient(to top, rgba(10, 10, 14, 0.98) 35%, rgba(0, 210, 255, 0.08) 100%);
+}
+
+/* Media Query Responsif HP */
+@media (max-width: 950px) {
+    .instructors-grid { grid-template-columns: 1fr; }
+    .activities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 550px) {
+    .activities-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   CSS NEW SECTION: FAQ ACCORDION ENGINE
+   ========================================================================== */
+.faq-section {
+    padding: 60px 0;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Pembungkus Utama Bertumpuk Lurus ke Bawah (Anti-Miring) */
+.faq-master-wrapper {
+    display: flex !important;
+    flex-direction: column !important; /* Memaksa kartu menyusun tegak lurus ke bawah */
+    gap: 15px !important;
+    width: 100% !important;
+    max-width: 800px !important; /* Dibuat sedikit lebih ramping di tengah layar agar elegan */
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Wadah Kartu FAQ */
+.faq-card {
+    width: 100% !important;
+    padding: 20px 25px !important;
+    cursor: pointer;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    box-sizing: border-box !important;
+    transition: all 0.3s ease;
+}
+
+.faq-card:hover {
+    border-color: rgba(0, 210, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Header Pertanyaan */
+.faq-question {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.faq-question h4 {
+    margin: 0 !important;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.faq-icon {
+    color: #606070;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Kotak Jawaban (Hidden by default, diaktifkan via JS) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    margin: 0 !important;
+    padding-top: 15px !important;
+    color: #a0a0b0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* --- STATE INTERAKTIF SAAT FAQ TERBUKA --- */
+.faq-card.faq-active .faq-icon {
+    transform: rotate(180deg); /* Panah berputar ke atas */
+    color: #00d2ff;
+}
+
+.faq-card.faq-active {
+    border-color: rgba(0, 210, 255, 0.25) !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
 }
