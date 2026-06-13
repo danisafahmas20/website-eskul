@@ -68,6 +68,53 @@
             </div>
         </section>
 
+        <section class="hackathon-section">
+    <div class="hackathon-glow-bg"></div>
+    <div class="hackathon-container glass-card-organic">
+        <div class="hackathon-info">
+            <span class="hackathon-badge"><i class="fas fa-trophy"></i> Coming Soon Event</span>
+            <h2>NexaHack <span class="text-glow-blue">2026</span></h2>
+            <p>Kompetisi maraton koding 24 jam tingkat sekolah! Tantang dirimu untuk membangun solusi website inovatif bertema <em>"Smart School Dashboard"</em> secara tim. Menangkan sertifikat eksklusif dan piala bergilir!</p>
+            
+            <div class="hackathon-meta-grid">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <span>Pelaksanaan:</span>
+                        <strong>Agustus 2026</strong>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <span>Kuota Tim:</span>
+                        <strong>Maksimal 3 Siswa / Tim</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hackathon-countdown-box">
+            <h4>Pendaftaran Dibuka Dalam:</h4>
+            <div class="countdown-timer">
+                <div class="time-block">
+                    <span id="days">00</span>
+                    <small>Hari</small>
+                </div>
+                <div class="time-block">
+                    <span id="hours">00</span>
+                    <small>Jam</small>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">00</span>
+                    <small>Menit</small>
+                </div>
+            </div>
+            <a href="form.html" class="btn-hackathon-join">Booking Slot Tim Kamu <i class="fas fa-lock-open"></i></a>
+        </div>
+    </div>
+</section>
+
         <section id="mentor" class="reveal">
             <h2 class="text-center neon-text-blue">Our Instructors</h2>
             <div class="grid-container">
@@ -85,6 +132,49 @@
                 </div>
             </div>
         </section>
+
+        <section class="simulation-section">
+    <div class="simulation-header">
+        <h2><i class="fas fa-terminal"></i> Code-Nexa <span class="text-glow-warm">Interactive Lab</span></h2>
+        <p>Uji kemampuan logikamu! Selesaikan tantangan koding di bawah ini langsung dari browser.</p>
+    </div>
+
+    <div class="simulation-container matrix-grid">
+        <div class="challenge-box glass-card-organic">
+            <span class="challenge-badge">🎯 Tantangan Hari Ini</span>
+            <h3>Membuat Judul Utama Website</h3>
+            <p>Di dunia web development, tag HTML digunakan untuk menyusun kerangka. Tugasmu adalah melengkapi baris kode di sebelah kanan agar menghasilkan tulisan judul <strong>"Halo Dunia"</strong> menggunakan tag judul terbesar (Heading 1).</p>
+            
+            <div class="clue-box">
+                <strong>💡 Petunjuk Lengkap:</strong>
+                <ul>
+                    <li>Gunakan tag pembuka <code>&lt;h1&gt;</code> dan tag penutup <code>&lt;/h1&gt;</code>.</li>
+                    <li>Tuliskan teks tepat di antara kedua tag tersebut tanpa spasi berlebih.</li>
+                </ul>
+            </div>
+            <button class="btn-check-code" onclick="cekJawabanKoding()">Jalankan & Periksa Kode 🚀</button>
+        </div>
+
+        <div class="editor-box-container glass-card-organic">
+            <div class="simulator-header">
+                <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="window-title">latihan_dasar.html</span>
+            </div>
+            <div class="editor-input-area">
+                <textarea id="user-code-input" spellcheck="false" placeholder="Ketik kodemu di sini...">&lt;h1&gt;Tulis Sesuatu Di Sini&lt;/h1&gt;</textarea>
+            </div>
+            <div class="simulator-divider"></div>
+            <div class="preview-label">Hasil Output Browser:</div>
+            <div id="lab-preview-output" class="lab-output-window">
+                <span style="color: #696979; font-style: italic;">Hasil kodemu akan muncul di sini...</span>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="gallery" class="reveal">
             <h2 class="text-center neon-text-blue">Our Activities</h2>
@@ -317,6 +407,56 @@ function switchSkill(skillKey) {
         contentPanel.style.opacity = 1;
     }, 150);
 }
+
+// ==========================================
+// LOGIKA SCRIPT SIMULASI KODING LAB
+// ==========================================
+function cekJawabanKoding() {
+    // Ambil string teks yang diketik siswa di textarea
+    const inputKode = document.getElementById('user-code-input').value;
+    const outputBox = document.getElementById('lab-preview-output');
+    
+    // Tembakkan langsung teks input ke jendela visual preview
+    outputBox.innerHTML = inputKode;
+    
+    // Validasi Jawaban Menggunakan Metode Regex Murni (Menghilangkan Spasi)
+    const kodeBersih = inputKode.replace(/\s+/g, '').toLowerCase();
+    
+    if (kodeBersih.includes('<h1>halodunia</h1>')) {
+        // Jika kode benar, berikan efek selamat berupa pop-up alert
+        setTimeout(() => {
+            alert('🎉 LUAR BIASA! Kodemu 100% Benar. Kamu siap menjadi Developer Hebat!');
+        }, 300);
+    }
+}
+
+// ==========================================
+// LOGIKA SCRIPT TIMER COUNTDOWN HACKATHON
+// ==========================================
+function jalankanCountdownHackathon() {
+    // Target Waktu: 45 Hari dari sekarang (Bisa kamu ganti ke tanggal spesifik bebas)
+    const targetTanggal = new Date().getTime() + (45 * 24 * 60 * 60 * 1000);
+
+    setInterval(() => {
+        const waktuSekarang = new Date().getTime();
+        const selisihJarak = targetTanggal - waktuSekarang;
+
+        // Hitung pembagian waktu hari, jam, dan menit
+        const hari = Math.floor(selisihJarak / (1000 * 60 * 60 * 24));
+        const jam = Math.floor((selisihJarak % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const menit = Math.floor((selisihJarak % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Tampilkan ke komponen HTML di halaman web
+        if(document.getElementById('days')) {
+            document.getElementById('days').innerText = hari < 10 ? '0' + hari : hari;
+            document.getElementById('hours').innerText = jam < 10 ? '0' + jam : jam;
+            document.getElementById('minutes').innerText = menit < 10 ? '0' + menit : menit;
+        }
+    }, 1000);
+}
+
+// Jalankan otomatis sistem hitung mundur saat halaman selesai dimuat
+document.addEventListener('DOMContentLoaded', jalankanCountdownHackathon);
 </script>
 </body>
 </html>
